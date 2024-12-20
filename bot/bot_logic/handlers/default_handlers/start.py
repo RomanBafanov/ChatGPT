@@ -9,6 +9,13 @@ from utils.set_bot_command import set_bot_commands
 
 @dp.message(Command("start"))
 async def bot_start(message: types.Message):
+    """
+    Функция обработчик стартовой команды бота, проводит проверку на регистрацию
+
+    :param message: (Message) информация о сообщении пользователя.
+    :return: Выводит сообщение с приветствием пользователю и кнопку для начала общения с ИИ
+    """
+
     await set_bot_commands(bot)
     builder = InlineKeyboardBuilder()
     builder.row(types.InlineKeyboardButton(
@@ -20,6 +27,14 @@ async def bot_start(message: types.Message):
 
 @dp.callback_query(F.data == "back")
 async def back(callback: types.CallbackQuery, state: FSMContext):
+    """
+    Функция дублирует стартовую функцию
+
+    :param callback: (CallbackQuery) информация о нажатой кнопке "Закончить чат".
+    :param state: (FSMContext) информация о состоянии пользователя.
+    :return: Выводит сообщение с приветствием пользователю и кнопку для начала общения с ИИ
+    """
+
     builder = InlineKeyboardBuilder()
     builder.row(types.InlineKeyboardButton(
         text="Начать чат с ИИ", callback_data="AI")

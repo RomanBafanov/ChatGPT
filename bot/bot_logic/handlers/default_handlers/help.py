@@ -7,6 +7,13 @@ from bot.bot_logic.loader import dp
 
 @dp.message(Command("help"))
 async def bot_start(message: types.Message):
+    """
+    Функция обработчик команды /help
+
+    :param message: (Message) информация о сообщении пользователя.
+    :return: Возвращает сообщение о том, сто в боте ты можешь только пообщаться с ИИ
+    """
+
     builder = InlineKeyboardBuilder()
     builder.row(types.InlineKeyboardButton(
         text="Начать чат с ИИ", callback_data="AI")
